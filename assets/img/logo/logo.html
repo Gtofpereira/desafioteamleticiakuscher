@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LK Team: logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* Fonte das versões da logo. Uso: logo.html?v=horizontal|centralizada&cor=preto|branco&fundo=transparente|claro|roxo */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; font-family: Montserrat, sans-serif; }
+  body.claro { background: #fff; }
+  body.roxo { background: #381250; }
+  .stage { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; }
+  .logo { color: #111; }
+  .logo.branco { color: #fff; }
+  svg.lk { display: block; }
+
+  /* Horizontal: LK | TEAM / BY LETICIA KUSCHEL */
+  .h { display: flex; align-items: center; gap: 22px; }
+  .h svg.lk { height: 88px; }
+  .h .div { width: 1.5px; height: 76px; background: currentColor; opacity: .35; }
+  .h .txt { display: flex; flex-direction: column; align-items: flex-start; }
+  .h .word { font-weight: 600; font-size: 44px; line-height: 1; letter-spacing: .32em; margin-right: -.32em; }
+  .h .sig { font-weight: 500; font-size: 10.5px; letter-spacing: .3em; margin-top: 10px; opacity: .75; white-space: nowrap; }
+
+  /* Centralizada: LK / TEAM / BY LETICIA KUSCHEL */
+  .c { display: flex; flex-direction: column; align-items: center; }
+  .c svg.lk { height: 96px; }
+  .c .word { font-weight: 600; font-size: 30px; line-height: 1; letter-spacing: .5em; margin: 18px -.5em 0 0; }
+  .c .sig { font-weight: 500; font-size: 10.5px; letter-spacing: .32em; margin: 10px -.32em 0 0; opacity: .75; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="logo h" id="horizontal" aria-label="LK Team by Leticia Kuschel">
+    <svg class="lk" viewBox="0 0 266 244" fill="currentColor" aria-hidden="true"><path d="M45 0H88L52.5 186H127L157.5 225.5H0Z"/><path d="M206 0H263.5L159.5 106L265.5 243.5H211.5L128.5 136.5L101.5 162.5L116 89Z"/></svg>
+    <span class="div"></span>
+    <span class="txt"><span class="word">TEAM</span><span class="sig">BY LETICIA KUSCHEL</span></span>
+  </div>
+  <div class="logo c" id="centralizada" aria-label="LK Team by Leticia Kuschel">
+    <svg class="lk" viewBox="0 0 266 244" fill="currentColor" aria-hidden="true"><path d="M45 0H88L52.5 186H127L157.5 225.5H0Z"/><path d="M206 0H263.5L159.5 106L265.5 243.5H211.5L128.5 136.5L101.5 162.5L116 89Z"/></svg>
+    <span class="word">TEAM</span>
+    <span class="sig">BY LETICIA KUSCHEL</span>
+  </div>
+</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const v = q.get('v') || 'horizontal';
+  document.getElementById(v === 'horizontal' ? 'centralizada' : 'horizontal').remove();
+  if (q.get('cor') === 'branco') document.querySelector('.logo').classList.add('branco');
+  const fundo = q.get('fundo');
+  if (fundo === 'claro' || fundo === 'roxo') document.body.classList.add(fundo);
+</script>
+</body>
+</html>
