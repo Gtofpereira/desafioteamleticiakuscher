@@ -113,3 +113,52 @@ if (lightbox) {
 }
 
 document.getElementById('ano').textContent = new Date().getFullYear();
+
+// Balãozinho de mensagem perto do botão flutuante de WhatsApp, simulando chat do WhatsApp
+const waBubble = document.getElementById('waBubble');
+if (waBubble) {
+  const CHAVE_BOLHA = 'lk-wa-bubble-fechado';
+  let bolhaMostrada = false;
+
+  function iniciarSequenciaWaBubble() {
+    if (bolhaMostrada || sessionStorage.getItem(CHAVE_BOLHA)) return;
+    bolhaMostrada = true;
+
+    const msg1 = document.getElementById('waMsg1');
+    const msg2 = document.getElementById('waMsg2');
+
+    if (msg1) {
+      const minutos = new Date().getHours() * 60 + new Date().getMinutes();
+      const saudacao = (minutos >= 360 && minutos <= 719) ? 'bom dia'
+        : (minutos >= 720 && minutos <= 1110) ? 'boa tarde'
+        : 'boa noite';
+      msg1.textContent = `Oii, ${saudacao}! 👋`;
+      msg1.classList.add('in');
+      waBubble.classList.add('show-close'); // só mostra o X depois que a mensagem aparece
+    }
+
+    if (msg2) {
+      setTimeout(() => {
+        msg2.classList.add('in'); // mostra "digitando..."
+        setTimeout(() => {
+          msg2.textContent = 'Dúvidas? É só me chamar por aqui! ❤️';
+        }, 3500);
+      }, 900);
+    }
+  }
+  window.LK_iniciarSequenciaWaBubble = iniciarSequenciaWaBubble;
+
+  // Sem popup nesta página (ex.: desafio.html): mostra sozinho depois de um tempinho.
+  // Em páginas com popup (ex.: index.html), quem decide a hora é o script do popup.
+  if (!document.getElementById('promoPopup')) {
+    setTimeout(iniciarSequenciaWaBubble, 5000);
+  }
+
+  const fecharBolha = waBubble.querySelector('.wa-bubble-close');
+  if (fecharBolha) {
+    fecharBolha.addEventListener('click', () => {
+      waBubble.style.display = 'none';
+      sessionStorage.setItem(CHAVE_BOLHA, '1');
+    });
+  }
+}

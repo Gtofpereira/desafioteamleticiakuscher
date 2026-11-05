@@ -61,8 +61,6 @@ h1 em, h2 em, .big-quote em {
 .hero h1 { line-height: 1.08; }
 .section h2, .big-quote p { line-height: 1.14; }
 .nowrap { white-space: nowrap; }
-.nowrap em { font-size: 2.2em; }
-#equipe h2 { line-height: 1.22; }
 
 /* títulos de seção centralizados em qualquer tamanho de tela */
 .wrap > .eyebrow, .wrap > h2, .wrap > .lead, .wrap > .big-quote { text-align: center; }
@@ -328,7 +326,7 @@ h1 em, h2 em, .big-quote em {
 
 /* suporte */
 .big-quote { margin: 0; max-width: 900px; }
-.big-quote p { margin: 0; font: 500 clamp(1.7rem, 3.6vw, 2.9rem)/1.18 var(--serif); letter-spacing: -.035em; }
+.big-quote p { margin: 0; font: 500 clamp(1.9rem, 4.3vw, 3.3rem)/1.18 var(--serif); letter-spacing: -.035em; }
 .big-quote em { color: var(--rosa); }
 .big-quote cite { display: block; margin-top: 18px; font-style: normal; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--txt-3); }
 
@@ -457,6 +455,47 @@ h1 em, h2 em, .big-quote em {
 .wa-float:hover { transform: scale(1.08); }
 .wa-float svg { width: 30px; height: 30px; }
 
+/* balãozinho de mensagem perto do botão de WhatsApp, simulando chat do WhatsApp */
+.wa-bubble {
+  position: fixed; right: 86px; bottom: 24px; z-index: 59;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+  max-width: 210px;
+}
+.wa-msg {
+  position: relative; padding: 10px 14px; border-radius: 14px;
+  background: #fff; color: #140a1c;
+  font: 500 14px/1.4 var(--sans);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+  opacity: 0; transform: translateY(8px) scale(.92); transform-origin: bottom right;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+  pointer-events: none;
+}
+.wa-msg.in { opacity: 1; transform: none; pointer-events: auto; }
+.wa-msg:last-child::after {
+  content: ""; position: absolute; right: -6px; bottom: 12px;
+  width: 0; height: 0;
+  border-top: 7px solid transparent; border-bottom: 7px solid transparent;
+  border-left: 7px solid #fff;
+}
+.wa-bubble-close {
+  position: absolute; top: -8px; right: -8px; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--roxo-2); color: #fff;
+  border: 2px solid var(--bg); font-size: 12px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center; padding: 0; z-index: 1;
+  opacity: 0; pointer-events: none; transition: opacity .3s var(--ease);
+}
+.wa-bubble.show-close .wa-bubble-close {
+  opacity: 1; pointer-events: auto;
+}
+.wa-typing { display: inline-flex; gap: 3px; align-items: center; padding: 3px 2px; }
+.wa-typing i { width: 6px; height: 6px; border-radius: 50%; background: #b7b0bd; font-style: normal; animation: wa-typing-bounce 1.2s infinite; }
+.wa-typing i:nth-child(2) { animation-delay: .15s; }
+.wa-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes wa-typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
 /* lightbox */
 .lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 900px); max-height: 92vh; }
 .lightbox::backdrop { background: rgba(8, 4, 12, .88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
@@ -503,9 +542,9 @@ h1 em, h2 em, .big-quote em {
   .footer-grid { grid-template-columns: 1fr; }
   .cta-row .btn { width: 100%; }
   .card, .step { padding: 24px; }
-  /* "só seu": vira uma assinatura grande por cima da frase no celular */
-  #equipe .nowrap { display: block; margin-top: -26px; }
-  #equipe .nowrap em { font-size: 3em; display: inline-block; transform: rotate(-4deg); }
+  #equipe h2 { line-height: 1.2; }
+  #equipe .nowrap { display: block; margin-top: -35px; }
+  #equipe .nowrap em { font-size: 5.2em; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

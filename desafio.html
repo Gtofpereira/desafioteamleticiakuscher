@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<script data-goatcounter="https://desafio21diasleticia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 /* ── Desafio 21 Dias: estilos exclusivos desta página ── */
 
@@ -44,10 +45,14 @@
 }
 .d-hero-head { position: relative; z-index: 1; width: min(860px, 100% - 32px); margin: 0 auto; }
 .d-hero-head h1 {
-  font: 600 clamp(2rem, 6.2vw, 4.6rem)/1.18 var(--serif);
+  font: 600 clamp(2rem, 6.2vw, 4.6rem)/1.15 var(--serif);
   letter-spacing: -.04em;
   margin: 26px 0 18px;
 }
+
+/* palavras manuscritas maiores nesta página, com respiro extra pra não cortar a linha de cima */
+h1 em, h2 em { font-size: 2.1em; }
+.section h2 { line-height: 1.15; }
 
 /* pill de datas */
 .d-pill {
@@ -167,13 +172,13 @@
 }
 .d-manifesto blockquote {
   margin: 0; padding: 0;
-  font: 500 clamp(1.8rem, 3.8vw, 3.2rem)/1.18 var(--serif);
+  font: 500 clamp(1.8rem, 3.8vw, 3.2rem)/1.3 var(--serif);
   letter-spacing: -.04em; max-width: 820px; margin: 0 auto;
 }
 .d-manifesto blockquote em {
   display: inline-block; color: var(--rosa);
   font-family: var(--script); font-style: normal; font-weight: 400;
-  font-size: 1.55em; line-height: .8; vertical-align: -.04em;
+  font-size: 2em; line-height: .8; vertical-align: -.04em;
   margin: 0 .1em 0 .12em;
   text-shadow: 0 0 32px rgba(255, 79, 163, .4);
 }
@@ -200,7 +205,7 @@
 .d-urgencia { margin: 0 0 6px; font-size: 11px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; color: var(--rosa); }
 .d-final-box h2 { font: 600 clamp(1.9rem, 4.3vw, 3.3rem)/1.2 var(--serif); letter-spacing: -.04em; margin: 0 auto 18px; }
 .d-final-box p { color: var(--txt-2); max-width: 480px; margin: 0 auto 32px; font-size: 17px; font-weight: 300; }
-#d-timer-restam { color: var(--rosa-claro); font-weight: 600; }
+.d-timer-restam { color: var(--rosa-claro); font-weight: 600; }
 
 /* responsivo */
 @media (max-width: 860px) {
@@ -262,7 +267,7 @@
     <a href="#duvidas">Dúvidas</a>
     <a href="index.html">Consultoria Personalizada</a>
   </nav>
-  <a class="btn btn-white btn-sm" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener">Quero entrar</a>
+  <a class="btn btn-white btn-sm" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener" data-goatcounter-click="kiwify-nav">Quero entrar</a>
 </header>
 
 <main>
@@ -275,7 +280,7 @@
     <h1 class="reveal">21 dias pra provar que você <em>consegue</em> ser constante</h1>
     <p class="hero-sub reveal">Sai da motivação e constrói hábitos que ficam. Treino, dieta, ranking e a Leticia do seu lado durante todo o desafio.</p>
     <div class="cta-row reveal">
-      <a class="btn btn-white" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener">Quero entrar no desafio <svg><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-white" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener" data-goatcounter-click="kiwify-hero">Quero entrar no desafio <svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
     </div>
 
@@ -341,6 +346,17 @@
         <p>Dúvida de execução? Manda o vídeo. Ela assiste, corrige e, se precisar, grava uma explicação só pra você.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- CTA (duplicado, antes do passo a passo) -->
+<section class="section final">
+  <div class="wrap narrow d-final-box glass reveal">
+    <span class="d-num-big" aria-hidden="true">21</span>
+    <p class="d-urgencia">Inscrições abertas</p>
+    <h2>Faltam <span class="d-timer-restam">poucos dias</span> pra começar.</h2>
+    <p>Garante sua vaga agora e já entra pro grupo exclusivo do desafio.</p>
+    <a class="btn btn-white" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener" data-goatcounter-click="kiwify-cta-meio">Quero garantir minha vaga <svg><use href="#i-arrow"/></svg></a>
   </div>
 </section>
 
@@ -414,9 +430,9 @@
   <div class="wrap narrow d-final-box glass reveal">
     <span class="d-num-big" aria-hidden="true">21</span>
     <p class="d-urgencia">Inscrições abertas</p>
-    <h2>Faltam <span id="d-timer-restam">poucos dias</span> pra começar.</h2>
+    <h2>Faltam <span class="d-timer-restam">poucos dias</span> pra começar.</h2>
     <p>Garante sua vaga agora e já entra pro grupo exclusivo do desafio.</p>
-    <a class="btn btn-white" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener">Quero garantir minha vaga <svg><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-white" href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener" data-goatcounter-click="kiwify-cta-final">Quero garantir minha vaga <svg><use href="#i-arrow"/></svg></a>
   </div>
 </section>
 
@@ -461,7 +477,7 @@
       </details>
       <details class="glass reveal">
         <summary>Quanto custa o desafio?</summary>
-        <p>O valor e a inscrição ficam na <a href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener">página de inscrição</a>. Se ficar com dúvida, chama a Leticia no WhatsApp.</p>
+        <p>O valor e a inscrição ficam na <a href="https://pay.kiwify.com.br/GDN350" target="_blank" rel="noopener" data-goatcounter-click="kiwify-faq">página de inscrição</a>. Se ficar com dúvida, chama a Leticia no WhatsApp.</p>
       </details>
       <details class="glass reveal">
         <summary>Preciso ter experiência na academia?</summary>
@@ -497,7 +513,7 @@
       <p>Consultoria online de treino e dieta para mulheres.</p>
       <div class="socials">
         <a href="https://instagram.com/lekuschel" target="_blank" rel="noopener" aria-label="Instagram da Leticia"><svg><use href="#i-ig"/></svg></a>
-        <a data-wa="Oi, Leticia! Vim pelo site da LK Team." href="#" aria-label="WhatsApp"><svg><use href="#i-wpp"/></svg></a>
+        <a data-wa="Oi, Leticia! Vim pelo Desafio 21 Dias." href="#" aria-label="WhatsApp" data-goatcounter-click="whatsapp-footer-desafio"><svg><use href="#i-wpp"/></svg></a>
         <a href="mailto:lekuschel.contato@gmail.com" aria-label="E-mail"><svg><use href="#i-mail"/></svg></a>
       </div>
     </div>
@@ -524,7 +540,12 @@
   <p class="copy">© <span id="ano">2026</span> LK Team. Todos os direitos reservados.</p>
 </footer>
 
-<a class="wa-float" data-wa="Oi, Leticia! Vim pelo Desafio 21 Dias e quero saber mais!" href="#" aria-label="Falar no WhatsApp"><svg><use href="#i-wpp"/></svg></a>
+<div class="wa-bubble" id="waBubble">
+  <button class="wa-bubble-close" type="button" aria-label="Fechar">×</button>
+  <div class="wa-msg" id="waMsg1"></div>
+  <div class="wa-msg" id="waMsg2"><span class="wa-typing"><i></i><i></i><i></i></span></div>
+</div>
+<a class="wa-float" data-wa="Oi, Leticia! Vim pelo Desafio 21 Dias e quero saber mais!" href="#" aria-label="Falar no WhatsApp" data-goatcounter-click="whatsapp-float-desafio"><svg><use href="#i-wpp"/></svg></a>
 
 <script src="assets/js/main.js"></script>
 <script>
@@ -538,8 +559,8 @@
     min:   document.getElementById('t-min'),
     seg:   document.getElementById('t-seg'),
     msg:   document.getElementById('timerMsg'),
-    restam: document.getElementById('d-timer-restam'),
   };
+  const restamEls = document.querySelectorAll('.d-timer-restam');
 
   const blocos = {
     dias:  document.getElementById('bloco-dias'),
@@ -561,7 +582,7 @@
         els.msg.textContent = '🔥 O desafio já começou! Corre e garante sua vaga.';
         els.msg.style.display = 'block';
       }
-      if (els.restam) els.restam.textContent = 'pouquíssimos dias';
+      restamEls.forEach(el => el.textContent = 'pouquíssimos dias');
       return;
     }
 
@@ -575,13 +596,12 @@
     if (els.min)   els.min.textContent   = pad(min);
     if (els.seg)   els.seg.textContent   = pad(seg);
 
-    if (els.restam) {
-      els.restam.textContent = dias === 0
-        ? 'menos de 1 dia'
-        : dias === 1
-        ? '1 dia'
-        : `${dias} dias`;
-    }
+    const textoRestam = dias === 0
+      ? 'menos de 1 dia'
+      : dias === 1
+      ? '1 dia'
+      : `${dias} dias`;
+    restamEls.forEach(el => el.textContent = textoRestam);
 
     setTimeout(atualizar, 1000);
   }
