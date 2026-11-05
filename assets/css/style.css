@@ -164,8 +164,14 @@ h1 em, h2 em, .big-quote em {
   background: linear-gradient(160deg, rgba(255, 79, 163, .12), rgba(91, 31, 134, .14));
   border: 1px solid rgba(255, 79, 163, .3);
 }
-.promo-prize-icons { margin: 0 0 6px; font-size: 22px; letter-spacing: 6px; }
-.promo-prize-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--txt); }
+.promo-prize-title { margin: 10px 0 0; font-size: 13px; font-weight: 600; color: var(--txt-2); }
+.promo-prize-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.promo-prize-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 999px;
+  background: rgba(255, 255, 255, .07); border: 1px solid var(--line-2);
+  font-size: 17px; font-weight: 700; color: var(--txt);
+}
 .promo-timer-label { margin: 0 0 8px; font-size: 13px; color: var(--txt-2); }
 .promo-timer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 18px; }
 .promo-timer-block {
