@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de acessos | LK Team</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/logo/lk-simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+body { overflow-x: auto; }
+.adm-wrap { width: min(980px, 100% - 32px); margin: 0 auto; padding: 48px 0 80px; }
+.adm-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+.adm-head h1 { font: 600 clamp(1.6rem, 3.2vw, 2.4rem)/1.2 var(--serif); letter-spacing: -.03em; margin: 0; }
+.adm-head p { margin: 6px 0 0; color: var(--txt-3); font-size: 14px; }
+.adm-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.adm-period { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); }
+.adm-period button {
+  border: none; background: transparent; color: var(--txt-2); cursor: pointer;
+  padding: 7px 14px; border-radius: 999px; font: 600 13px/1 var(--sans);
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.adm-period button.active { background: var(--rosa); color: #fff; }
+
+.adm-link {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
+  border: 1px solid var(--line-2); color: var(--txt-2); text-decoration: none; font-size: 13px; cursor: pointer;
+  background: rgba(255,255,255,.02); transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+.adm-link:hover { border-color: var(--rosa); color: var(--rosa-claro); }
+
+/* painel de configuração dos tokens */
+.adm-setup {
+  border-radius: var(--r-md); padding: 28px; margin-bottom: 32px;
+  background: var(--glass); border: 1px solid var(--line);
+}
+.adm-setup h2 { font: 600 20px/1.3 var(--serif); margin: 0 0 8px; }
+.adm-setup p { color: var(--txt-2); font-size: 14px; margin: 0 0 20px; max-width: 620px; }
+.adm-field { margin-bottom: 14px; }
+.adm-field label { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--txt-3); margin-bottom: 6px; }
+.adm-field input {
+  width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line-2);
+  background: rgba(255,255,255,.03); color: var(--txt); font: 400 14px var(--sans);
+}
+.adm-field input:focus { outline: none; border-color: var(--rosa); }
+.adm-setup-foot { display: flex; align-items: center; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+.adm-note { font-size: 12px; color: var(--txt-3); }
+
+/* seções de cada site */
+.adm-site { margin-bottom: 56px; }
+.adm-site-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.adm-site-head h2 { font: 600 clamp(1.2rem, 2.4vw, 1.6rem)/1.2 var(--serif); margin: 0; }
+.adm-site-head span { font-size: 12px; color: var(--txt-3); }
+
+.adm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.adm-stat { border-radius: var(--r-sm); padding: 18px 20px; background: var(--glass); border: 1px solid var(--line); }
+.adm-stat b { display: block; font: 700 30px/1 var(--serif); color: var(--txt); }
+.adm-stat span { display: block; margin-top: 6px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--txt-3); }
+
+.adm-panel { border-radius: var(--r-md); padding: 22px 24px; background: var(--glass); border: 1px solid var(--line); margin-bottom: 16px; }
+.adm-panel h3 { font: 600 14px/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--txt-2); margin: 0 0 18px; }
+
+.bar-row { display: grid; grid-template-columns: minmax(0, 180px) 1fr 44px; align-items: center; gap: 12px; margin-bottom: 12px; }
+.bar-row:last-child { margin-bottom: 0; }
+.bar-label { font-size: 13.5px; color: var(--txt-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { height: 9px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--roxo-2), var(--rosa)); }
+.bar-value { font-size: 12.5px; color: var(--txt-3); text-align: right; font-variant-numeric: tabular-nums; }
+
+.adm-empty { color: var(--txt-3); font-size: 13.5px; padding: 6px 2px; }
+.adm-error {
+  border-radius: var(--r-sm); padding: 16px 18px; margin-bottom: 16px;
+  background: rgba(255, 100, 100, .06); border: 1px solid rgba(255, 100, 100, .25);
+  color: #ffb0b0; font-size: 13.5px; line-height: 1.5;
+}
+.adm-loading { color: var(--txt-3); font-size: 13.5px; padding: 20px 2px; }
+
+@media (max-width: 640px) {
+  .adm-stats { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 110px 1fr 36px; }
+}
+</style>
+</head>
+<body>
+
+<div class="adm-wrap">
+  <div class="adm-head">
+    <div>
+      <h1>Painel de acessos</h1>
+      <p>Visitas e cliques do site principal e do Desafio 21 Dias.</p>
+    </div>
+    <div class="adm-actions">
+      <div class="adm-period" id="periodo">
+        <button data-dias="7">7 dias</button>
+        <button data-dias="30" class="active">30 dias</button>
+        <button data-dias="90">90 dias</button>
+        <button data-dias="3650">Tudo</button>
+      </div>
+      <button class="adm-link" id="btnConfig" type="button">⚙ Tokens</button>
+      <a class="adm-link" href="index.html">← Voltar pro site</a>
+    </div>
+  </div>
+
+  <div class="adm-setup" id="setup" style="display:none">
+    <h2>Conectar com o GoatCounter</h2>
+    <p>Cole aqui os tokens de API (só leitura) de cada painel. Eles ficam guardados só no seu navegador (localStorage) — nunca são enviados pra nenhum outro lugar além do próprio GoatCounter.</p>
+    <div class="adm-field">
+      <label for="tokenPrincipal">Token do site principal (siteleticiakuschel)</label>
+      <input type="password" id="tokenPrincipal" autocomplete="off" placeholder="Cole o token aqui">
+    </div>
+    <div class="adm-field">
+      <label for="tokenDesafio">Token do Desafio 21 Dias (desafio21diasleticia)</label>
+      <input type="password" id="tokenDesafio" autocomplete="off" placeholder="Cole o token aqui">
+    </div>
+    <div class="adm-setup-foot">
+      <a class="btn btn-white btn-sm" id="btnSalvar" href="#">Salvar e carregar</a>
+      <span class="adm-note">Gere o token em goatcounter.com → Settings → API (permissão só de leitura).</span>
+    </div>
+  </div>
+
+  <div id="conteudo"></div>
+</div>
+
+<script>
+(function () {
+  const SITES = [
+    { chave: 'principal', nome: 'Site principal', codigo: 'siteleticiakuschel', tokenKey: 'lk-admin-token-principal' },
+    { chave: 'desafio',   nome: 'Desafio 21 Dias',  codigo: 'desafio21diasleticia', tokenKey: 'lk-admin-token-desafio' },
+  ];
+
+  const setup = document.getElementById('setup');
+  const conteudo = document.getElementById('conteudo');
+  const btnConfig = document.getElementById('btnConfig');
+  const btnSalvar = document.getElementById('btnSalvar');
+  const tokenPrincipalInput = document.getElementById('tokenPrincipal');
+  const tokenDesafioInput = document.getElementById('tokenDesafio');
+  const periodoWrap = document.getElementById('periodo');
+
+  let diasAtual = 30;
+
+  function temTokens() {
+    return SITES.every(s => localStorage.getItem(s.tokenKey));
+  }
+
+  function abrirSetup() {
+    tokenPrincipalInput.value = localStorage.getItem(SITES[0].tokenKey) || '';
+    tokenDesafioInput.value = localStorage.getItem(SITES[1].tokenKey) || '';
+    setup.style.display = 'block';
+  }
+
+  btnConfig.addEventListener('click', () => {
+    setup.style.display = setup.style.display === 'none' ? 'block' : 'none';
+  });
+
+  btnSalvar.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.setItem(SITES[0].tokenKey, tokenPrincipalInput.value.trim());
+    localStorage.setItem(SITES[1].tokenKey, tokenDesafioInput.value.trim());
+    setup.style.display = 'none';
+    carregarTudo();
+  });
+
+  periodoWrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-dias]');
+    if (!btn) return;
+    [...periodoWrap.children].forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    diasAtual = Number(btn.dataset.dias);
+    carregarTudo();
+  });
+
+  async function chamarApi(codigo, token, caminho, params) {
+    const url = new URL(`https://${codigo}.goatcounter.com${caminho}`);
+    Object.entries(params).forEach(([k, v]) => { if (v != null) url.searchParams.set(k, v); });
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) {
+      let msg = `Erro ${res.status} ao consultar ${codigo}`;
+      throw new Error(msg);
+    }
+    return res.json();
+  }
+
+  function barras(lista, max) {
+    if (!lista.length) return '<p class="adm-empty">Sem dados ainda neste período.</p>';
+    return lista.map(item => `
+      <div class="bar-row">
+        <span class="bar-label" title="${escapeHtml(item.label)}">${escapeHtml(item.label)}</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${max ? Math.max(4, (item.valor / max) * 100) : 0}%"></span></span>
+        <span class="bar-value">${item.valor}</span>
+      </div>
+    `).join('');
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  async function carregarSite(site) {
+    const token = localStorage.getItem(site.tokenKey);
+    const end = new Date();
+    const start = new Date(end.getTime() - diasAtual * 86400000);
+
+    // Uma chamada só por site (a API gratuita do GoatCounter limita a poucos
+    // pedidos por vez) — os totais são somados a partir da própria lista de hits.
+    const hits = await chamarApi(site.codigo, token, '/api/v0/stats/hits', {
+      start: start.toISOString(), end: end.toISOString(), limit: 100,
+    });
+
+    const paginas = (hits.hits || [])
+      .filter(h => !h.event)
+      .map(h => ({ label: h.path || '/', valor: h.count }))
+      .sort((a, b) => b.valor - a.valor);
+
+    const cliques = (hits.hits || [])
+      .filter(h => h.event)
+      .map(h => ({ label: h.path, valor: h.count }))
+      .sort((a, b) => b.valor - a.valor);
+
+    const totalVisitas = paginas.reduce((soma, p) => soma + p.valor, 0);
+    const totalCliques = cliques.reduce((soma, c) => soma + c.valor, 0);
+    const maxPaginas = Math.max(0, ...paginas.map(p => p.valor));
+    const maxCliques = Math.max(0, ...cliques.map(p => p.valor));
+
+    return `
+      <section class="adm-site">
+        <div class="adm-site-head">
+          <h2>${site.nome}</h2>
+          <span>${site.codigo}.goatcounter.com</span>
+        </div>
+        <div class="adm-stats">
+          <div class="adm-stat"><b>${totalVisitas}</b><span>Visitas no período</span></div>
+          <div class="adm-stat"><b>${totalCliques}</b><span>Cliques (eventos)</span></div>
+          <div class="adm-stat"><b>${paginas.length}</b><span>Páginas diferentes</span></div>
+        </div>
+        <div class="adm-panel">
+          <h3>Visitas por página</h3>
+          ${barras(paginas, maxPaginas)}
+        </div>
+        <div class="adm-panel">
+          <h3>Cliques por botão</h3>
+          ${barras(cliques, maxCliques)}
+        </div>
+      </section>
+    `;
+  }
+
+  async function carregarTudo() {
+    if (!temTokens()) {
+      conteudo.innerHTML = '';
+      abrirSetup();
+      return;
+    }
+    conteudo.innerHTML = '<p class="adm-loading">Carregando dados…</p>';
+    const blocos = [];
+    for (const site of SITES) {
+      try {
+        blocos.push(await carregarSite(site));
+      } catch (err) {
+        blocos.push(`
+          <section class="adm-site">
+            <div class="adm-site-head"><h2>${site.nome}</h2></div>
+            <div class="adm-error">
+              Não consegui carregar os dados deste site. ${escapeHtml(err.message || '')}
+              <br>Confira se o token está certo (botão "⚙ Tokens" acima). Se o erro for "Failed to fetch", pode ser o limite de pedidos da API gratuita — espera um minuto e tenta de novo.
+            </div>
+          </section>
+        `);
+      }
+    }
+    conteudo.innerHTML = blocos.join('');
+  }
+
+  carregarTudo();
+})();
+</script>
+</body>
+</html>

@@ -14,6 +14,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<script>
+// Diz de onde a pessoa veio usando ?ref= (ou utm_source/utm_campaign) na URL,
+// já que o Instagram costuma esconder o referrer normal do navegador.
+window.goatcounter = {
+  referrer: function () {
+    return goatcounter.get_query('ref') || goatcounter.get_query('utm_source') || goatcounter.get_query('utm_campaign') || document.referrer;
+  },
+};
+</script>
 <script data-goatcounter="https://desafio21diasleticia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 /* ── Desafio 21 Dias: estilos exclusivos desta página ── */
