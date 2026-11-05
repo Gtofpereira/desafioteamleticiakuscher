@@ -172,6 +172,11 @@ h1 em, h2 em, .big-quote em {
   background: rgba(255, 255, 255, .07); border: 1px solid var(--line-2);
   font-size: 17px; font-weight: 700; color: var(--txt);
 }
+.promo-prize-chip:first-child {
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-hover));
+  border-color: var(--rosa-claro); color: #fff;
+  box-shadow: 0 0 18px rgba(255, 79, 163, .65), 0 0 4px rgba(255, 140, 198, .8);
+}
 .promo-timer-label { margin: 0 0 8px; font-size: 13px; color: var(--txt-2); }
 .promo-timer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 18px; }
 .promo-timer-block {
