@@ -160,24 +160,12 @@ h1 em, h2 em, .big-quote em {
 .promo-benefits li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; line-height: 1.25; color: var(--txt); }
 .promo-benefits svg { flex: none; width: 16px; height: 16px; color: var(--rosa-claro); }
 .promo-prize {
-  margin: 0 0 26px; padding: 18px 20px; border-radius: var(--r-sm); text-align: left;
+  margin: 0 0 18px; padding: 14px 18px; border-radius: var(--r-sm); text-align: center;
   background: linear-gradient(160deg, rgba(255, 79, 163, .12), rgba(91, 31, 134, .14));
   border: 1px solid rgba(255, 79, 163, .3);
 }
-.promo-prize-title { margin: 0 0 12px; font-size: 16px; font-weight: 600; color: var(--txt); text-align: center; }
-.promo-prize-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.promo-prize-list li {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 14px; border-radius: var(--r-sm);
-  background: rgba(255, 255, 255, .05); border: 1px solid var(--line);
-  font-size: 16px; line-height: 1.4; color: var(--txt-2);
-}
-.promo-prize-list li:first-child {
-  background: linear-gradient(135deg, rgba(255, 196, 102, .18), rgba(255, 196, 102, .06));
-  border-color: rgba(255, 196, 102, .45);
-}
-.promo-prize-ico { flex: none; font-size: 20px; line-height: 1; }
-.promo-prize-list strong { color: var(--txt); }
+.promo-prize-icons { margin: 0 0 6px; font-size: 22px; letter-spacing: 6px; }
+.promo-prize-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--txt); }
 .promo-timer-label { margin: 0 0 8px; font-size: 13px; color: var(--txt-2); }
 .promo-timer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 18px; }
 .promo-timer-block {
