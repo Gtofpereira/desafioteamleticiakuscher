@@ -172,6 +172,7 @@ h1 em, h2 em, .big-quote em {
   background: rgba(255, 255, 255, .07); border: 1px solid var(--line-2);
   font-size: 17px; font-weight: 700; color: var(--txt);
 }
+.promo-prize-chip-ico { font-size: 13px; }
 .promo-prize-chip:first-child {
   background: linear-gradient(135deg, var(--rosa), var(--rosa-hover));
   border-color: var(--rosa-claro); color: #fff;
