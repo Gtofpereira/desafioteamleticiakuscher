@@ -154,11 +154,11 @@ h1 em, h2 em, .big-quote em {
   font-size: clamp(18px, 4.6vw, 20px); line-height: 1.5; color: var(--txt); font-weight: 400;
 }
 .promo-benefits {
-  list-style: none; margin: 0 auto 24px; padding: 0; max-width: 340px;
-  display: grid; gap: 12px; text-align: left;
+  list-style: none; margin: 0 auto 24px; padding: 0; max-width: 420px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; text-align: left;
 }
-.promo-benefits li { display: flex; align-items: center; gap: 10px; font-size: 17px; color: var(--txt); }
-.promo-benefits svg { flex: none; width: 19px; height: 19px; color: var(--rosa-claro); }
+.promo-benefits li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; line-height: 1.25; color: var(--txt); }
+.promo-benefits svg { flex: none; width: 16px; height: 16px; color: var(--rosa-claro); }
 .promo-prize {
   margin: 0 0 26px; padding: 18px 20px; border-radius: var(--r-sm); text-align: left;
   background: linear-gradient(160deg, rgba(255, 79, 163, .12), rgba(91, 31, 134, .14));
@@ -178,16 +178,16 @@ h1 em, h2 em, .big-quote em {
 }
 .promo-prize-ico { flex: none; font-size: 20px; line-height: 1; }
 .promo-prize-list strong { color: var(--txt); }
-.promo-timer-label { margin: 0 0 12px; font-size: 15px; color: var(--txt-2); }
-.promo-timer { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0 0 28px; }
+.promo-timer-label { margin: 0 0 8px; font-size: 13px; color: var(--txt-2); }
+.promo-timer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 18px; }
 .promo-timer-block {
-  min-width: 72px; padding: 14px 10px 10px;
+  min-width: 56px; padding: 9px 7px 7px;
   background: var(--glass-2); border: 1px solid var(--line);
   border-radius: var(--r-sm); text-align: center;
 }
-.promo-num { display: block; font: 700 32px/1 var(--serif); letter-spacing: -.02em; color: var(--txt); }
-.promo-label { margin-top: 6px; display: block; font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--txt-3); }
-.promo-timer-sep { font: 600 28px/1 var(--serif); color: var(--txt-3); align-self: center; padding-bottom: 12px; }
+.promo-num { display: block; font: 700 22px/1 var(--serif); letter-spacing: -.02em; color: var(--txt); }
+.promo-label { margin-top: 3px; display: block; font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--txt-3); }
+.promo-timer-sep { font: 600 20px/1 var(--serif); color: var(--txt-3); align-self: center; padding-bottom: 8px; }
 .promo-timer-msg { display: none; margin: 0 0 24px; font: 600 17px/1.4 var(--serif); color: var(--rosa-claro); }
 .promo-trust { margin: 16px 0 0; font-size: 14px; color: var(--txt-3); }
 
@@ -525,8 +525,6 @@ h1 em, h2 em, .big-quote em {
   .promo-banner-scroll { padding: 40px 20px; }
   .promo-close { top: 10px; right: 10px; width: 32px; height: 32px; }
   .promo-timer-sep { display: none; }
-  .promo-timer-block { min-width: 64px; padding: 12px 8px 10px; }
-  .promo-num { font-size: 27px; }
   .promo-strip-wrap { padding: 88px 12px 0; }
   .promo-strip { padding: 12px 18px; gap: 8px; }
   .promo-strip-text { font-size: 12.5px; }
