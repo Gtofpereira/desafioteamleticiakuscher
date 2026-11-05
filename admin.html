@@ -83,11 +83,37 @@ body { overflow-x: auto; }
   .adm-stats { grid-template-columns: 1fr; }
   .bar-row { grid-template-columns: 110px 1fr 36px; }
 }
+
+/* tela de senha */
+.adm-lock {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.adm-lock-box {
+  width: min(360px, 100%); text-align: center;
+  border-radius: var(--r-md); padding: 36px 28px; background: var(--glass); border: 1px solid var(--line);
+}
+.adm-lock-box h1 { font: 600 20px/1.3 var(--serif); margin: 0 0 18px; }
+.adm-lock-box input {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line-2);
+  background: rgba(255,255,255,.03); color: var(--txt); font: 400 14px var(--sans); text-align: center;
+  margin-bottom: 14px;
+}
+.adm-lock-box input:focus { outline: none; border-color: var(--rosa); }
+.adm-lock-erro { color: #ff8c8c; font-size: 13px; margin: 0 0 14px; display: none; }
 </style>
 </head>
 <body>
 
-<div class="adm-wrap">
+<div class="adm-lock" id="tela-senha">
+  <div class="adm-lock-box">
+    <h1>Painel de acessos</h1>
+    <p class="adm-lock-erro" id="lockErro">Senha incorreta, tenta de novo.</p>
+    <input type="password" id="lockSenha" placeholder="Senha" autocomplete="off">
+    <button class="btn btn-white" id="lockEntrar" style="width:100%">Entrar</button>
+  </div>
+</div>
+
+<div class="adm-wrap" id="conteudoPrincipal" style="display:none">
   <div class="adm-head">
     <div>
       <h1>Painel de acessos</h1>
@@ -127,6 +153,42 @@ body { overflow-x: auto; }
 
 <script>
 (function () {
+  // Tela de senha (proteção simples do lado do navegador, não é segurança forte)
+  const HASH_SENHA = 'f5ee09ecae651a120ba815476bf91663e6a484ddfd2f61d955cd54de0dae79f8';
+  const CHAVE_SENHA = 'lk-admin-ok';
+  const telaSenha = document.getElementById('tela-senha');
+  const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+  const lockInput = document.getElementById('lockSenha');
+  const lockErro = document.getElementById('lockErro');
+  const lockBtn = document.getElementById('lockEntrar');
+
+  async function sha256(texto) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(texto));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function liberarAcesso() {
+    telaSenha.style.display = 'none';
+    conteudoPrincipal.style.display = '';
+    carregarTudo();
+  }
+
+  async function tentarSenha() {
+    const h = await sha256(lockInput.value);
+    if (h === HASH_SENHA) {
+      sessionStorage.setItem(CHAVE_SENHA, '1');
+      liberarAcesso();
+    } else {
+      lockErro.style.display = 'block';
+      lockInput.value = '';
+      lockInput.focus();
+    }
+  }
+
+  lockBtn.addEventListener('click', tentarSenha);
+  lockInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tentarSenha(); });
+  lockInput.focus();
+
   const SITES = [
     { chave: 'principal', nome: 'Site principal', codigo: 'siteleticiakuschel', tokenKey: 'lk-admin-token-principal' },
     { chave: 'desafio',   nome: 'Desafio 21 Dias',  codigo: 'desafio21diasleticia', tokenKey: 'lk-admin-token-desafio' },
@@ -274,7 +336,9 @@ body { overflow-x: auto; }
     conteudo.innerHTML = blocos.join('');
   }
 
-  carregarTudo();
+  if (sessionStorage.getItem(CHAVE_SENHA)) {
+    liberarAcesso();
+  }
 })();
 </script>
 </body>
